@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d816dd3881e2b284ca5c9d16c4e3f0f6, type: 3}
+  m_Name: Diatom04
+  m_EditorClassIdentifier: 
+  Id: 3
+  ObjectName: Diatom04
+  Description: "Name: Diatom (Diatom04)\r\nAppearance: Spiral/folded morphology with dense surface texture, showing diverse symmetry in diatoms.\r\nIndicator: Sensitive to nutrients, temperature and pH; widely used as a bioindicator of water quality.\r\nExhibit: Connects micro life to oxygen production and long-term carbon sequestration in the ocean.\r\n"
+  ObjectPrefab: {fileID: 8815492379014579047, guid: 9c3db58bb1224ee4c876f0aa219bdcd0, type: 3}
+  TargetSizeInBubble: 0.3
+  OtherImages: []
