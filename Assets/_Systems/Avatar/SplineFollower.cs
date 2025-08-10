@@ -7,28 +7,28 @@ public class SplineFollower : MonoBehaviour
     public SplineContainer splineContainer;
     public float speed = 1.0f;
 
-    // 连续旋转（360°慢速）设置
+    // Continuous rotation (slow 360°) settings
     [Header("Spin (continuous 360°)")]
     [SerializeField] public bool useContinuousSpin = true;
-    [SerializeField] public float spinSpeedDegPerSec = 15f; // 旋转速度，越小越慢
-    // 为 true 时绕前进方向旋转；false 时做上下（绕右轴）旋转
+    [SerializeField] public float spinSpeedDegPerSec = 15f; // Rotation speed; smaller is slower
+    // When true rotate around the forward direction; when false rotate up/down (around the right axis)
     [SerializeField] public bool spinAroundForward = true;
 
-    // 正弦翻转（往返）设置：当 useContinuousSpin=false 时生效
+    // Sinusoidal flipping (back-and-forth) settings: used when useContinuousSpin=false
     [Header("Flip (sinusoidal, fallback)")]
     [SerializeField] public float flipAmplitudeDeg = 25f;
     [SerializeField] public float flipFrequencyHz = 0.25f;
     [SerializeField] public bool flipAroundForward = false;
 
     private float t = 0.0f;
-    private float _spinAngle; // 累积旋转角
+    private float _spinAngle; // Accumulated spin angle
 
     void Update()
     {
         if (splineContainer == null || splineContainer.Spline == null)
             return;
 
-        // Splines 2.x CalculateLength 需要传入样条的 localToWorld 矩阵
+        // Splines 2.x CalculateLength requires the spline's localToWorld matrix
         float4x4 l2w = (float4x4)splineContainer.transform.localToWorldMatrix;
         float splineLength = SplineUtility.CalculateLength(splineContainer.Spline, l2w);
         if (splineLength <= 1e-6f)
@@ -46,14 +46,14 @@ public class SplineFollower : MonoBehaviour
         Vector3 forward = new Vector3(tan.x, tan.y, tan.z).normalized;
         if (forward.sqrMagnitude < 1e-8f) return;
 
-        // 构建基础朝向
+        // Build the base orientation
         Vector3 worldUp = Vector3.up;
         Vector3 right = Vector3.Cross(worldUp, forward).normalized;
         if (right.sqrMagnitude < 1e-8f) right = Vector3.right;
         Vector3 up = Vector3.Cross(forward, right);
         Quaternion baseRot = Quaternion.LookRotation(forward, up);
 
-        // 计算额外旋转：优先使用连续旋转
+        // Compute the extra rotation: prefer continuous spin
         Quaternion extra;
         if (useContinuousSpin)
         {

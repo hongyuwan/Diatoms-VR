@@ -1,5 +1,5 @@
 using UnityEngine;
-// 为 XRI 3.0.8 使用正确的、精确的命名空间
+// Use the correct, precise namespaces for XRI 3.0.8
 
 
 /// <summary>
@@ -119,7 +119,7 @@ public class ObjectInteraction : MonoBehaviour
         general.allowTwoHandedScaling = true;
         general.allowTwoHandedRotation = UnityEngine.XR.Interaction.Toolkit.Transformers.XRGeneralGrabTransformer.TwoHandedRotationMode.TwoHandedAverage;
 
-        // 确保存在刚体并禁用重力，防止物体在被抓取前下落
+        // Ensure a Rigidbody exists and disable gravity to prevent the object from falling before being grabbed
         var rb = _currentInteractable.GetComponent<UnityEngine.Rigidbody>() ?? _currentInteractable.gameObject.AddComponent<UnityEngine.Rigidbody>();
         rb.isKinematic = true;
         rb.useGravity = false;

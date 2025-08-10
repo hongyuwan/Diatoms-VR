@@ -120,18 +120,18 @@ public class BubbleControllerFloating : MonoBehaviour
     private void EnsureInteractableAndWireEvents(Bubble bubble)
     {
         if (bubble == null) return;
-        // 确保有 Collider 可供交互
+        // Ensure a Collider exists for interaction
         var sphere = bubble.GetComponent<SphereCollider>();
         if (sphere != null) sphere.enabled = true;
 
-        // 确保存在 XRSimpleInteractable，并绑定选择事件
+        // Ensure an XRSimpleInteractable exists and wire up selection events
         var interactable = bubble.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
         if (interactable == null)
         {
             interactable = bubble.gameObject.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
         }
         interactable.interactionManager = _interactionManager;
-        // 避免重复绑定
+        // Avoid duplicate bindings
         interactable.selectEntered.RemoveListener(HandleBubbleSelectedVR);
         interactable.selectEntered.AddListener(HandleBubbleSelectedVR);
         interactable.enabled = true;

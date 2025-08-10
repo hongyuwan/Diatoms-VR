@@ -175,7 +175,7 @@ public class Bubble : MonoBehaviour
 		// Wait one frame before disabling colliders, allowing XRI to finish its state management.
 		await Task.Yield();
 		
-		// 禁用自身交互，释放射线给内部物体
+		// Disable bubble's own interaction to free the raycast for the contained object
 		var sphere = GetComponent<SphereCollider>();
 		if (sphere) sphere.enabled = false;
 		var simple = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
