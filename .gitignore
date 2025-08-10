@@ -75,3 +75,8 @@ crashlytics-build.properties
 
 # Ignore Library folders anywhere (root or nested Unity projects)
 **/[Ll]ibrary/
+
+# Ignore JetBrains Rider/IntelliJ project files
+/.idea/
+**/.idea/
+*.iml
